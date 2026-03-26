@@ -1,49 +1,8 @@
-// import axios from 'axios';
-
-// // הגדרת הכתובת של ה-API שלך כברירת מחדל
-// axios.defaults.baseURL = "http://localhost:5260";
-
-// // Interceptor לרישום שגיאות (דרישה מהמטלה)
-// axios.interceptors.response.use(
-//     response => response,
-//     error => {
-//         console.error('API Error:', error.response ? error.response.data : error.message);
-//         return Promise.reject(error);
-//     }
-// );
-
-// export default {
-//     getTasks: async () => {
-//         const result = await axios.get('/items');    
-//         return result.data;
-//     },
-
-//     addTask: async (name) => {
-//         // הוספת משימה חדשה ל-API
-//         const result = await axios.post('/items', { name, isComplete: false });
-//         return result.data;
-//     },
-
-//  // בתוך קובץ src/service.js ב-React
-// setCompleted: async (id, name, isComplete) => {
-//   // אנחנו שולחים גם את ה-name וגם את ה-isComplete החדש
-//   const result = await axios.put(`/items/${id}`, { 
-//     name: name, 
-//     isComplete: isComplete 
-//   });
-//   return result.data;
-// },
-//     deleteTask: async (id) => {
-//         // מחיקת משימה מה-API
-//         const result = await axios.delete(`/items/${id}`);
-//         return result.data;
-//     }
-// };
 
 import axios from 'axios';
 
 // 1. הגדרת ה-BaseURL
-const apiUrl = "http://localhost:5260";
+const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5260";
 axios.defaults.baseURL = apiUrl;
 
 // 2. ה-Interceptor חייב להיות מוגדר כאן, לפני הכל!
